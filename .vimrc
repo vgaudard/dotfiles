@@ -693,8 +693,6 @@ set secure
  " This section is also known as "FUCK YOU, YOU FUCKING KEYBOARD! I HATE YOU
  " AND I WILL KILL YOUR WHOLE FUCKING KEYBOARD FAMILY
  " {{{
-inoremap <Esc> <c-o>:throw 'Use jk instead'<Return>
-nnoremap . <c-o>:throw 'Use ù instead'<Return>
 
 
 augroup trainingcmd
