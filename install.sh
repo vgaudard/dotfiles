@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -a SYMLINKS
-SYMLINKS=(".bashrc .bash_aliases .vimrc")
+SYMLINKS=(".bashrc .bash_aliases .vimrc .inputrc")
 
 for f in $SYMLINKS; do
     if [ -L "$HOME/$f" ] || [ ! -f "$f" ] || [ ! -f "$HOME/$f" ] || diff "$f" "$HOME/$f" > /dev/null ; then
