@@ -264,6 +264,7 @@ nnoremap ù .
 nnoremap é ~
 vnoremap é ~
 nnoremap à @
+nnoremap àà @@
 vnoremap à @
 
  " Go to end of pasted text
@@ -438,6 +439,7 @@ inoremap jk <Esc>
  " Leader commands for writing and quitting
 nnoremap <silent>  <Leader>w   :update<Return>
 nnoremap <silent>  <Leader>ww  :update<Return>
+nnoremap <silent>  <Leader>wa  :wall<Return>
 nnoremap <silent>  <Leader>q   :q<Return>
 nnoremap <silent>  <Leader>wq  :exit<Return>
 
