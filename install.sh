@@ -4,7 +4,7 @@ declare -a SYMLINKS
 SYMLINKS=(".bashrc .bash_aliases .vimrc .inputrc")
 
 for f in $SYMLINKS; do
-    if [ -L "$HOME/$f" ] || [ ! -f "$f" ] || [ ! -f "$HOME/$f" ] || diff "$f" "$HOME/$f" > /dev/null ; then
+    if [ ! -f "$f" ] || [ -L "$HOME/$f" ] || [ ! -f "$HOME/$f" ] || diff "$f" "$HOME/$f" > /dev/null ; then
         rm "$HOME/$f"
         ln -s "$(realpath $f)" "$HOME/$f"
     else
