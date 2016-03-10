@@ -111,6 +111,17 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     " dispatch.vim: asynchronous build and test dispatcher
     Plugin 'tpope/vim-dispatch'
 
+    " Vim plugin that provides additional text objects
+    Plugin 'wellle/targets.vim'
+
+    " Hard Mode is a plugin which disables the arrow keys, the hjkl keys, the page up/down keys, and a handful of other keys which allow one to rely on character-wise navigation.
+    Plugin 'wikitopian/hardmode'
+    augroup cancer_mode
+        autocmd!
+        autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+    augroup END
+    nnoremap <leader>bh <Esc>:call ToggleHardMode()<CR>
+
     call vundle#end()
     filetype plugin indent on
 endif
@@ -223,6 +234,18 @@ endif
  "################################################################################
  "############################### Appearance #####################################
  "################################################################################
+
+if has("gui_running")
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular
+    set guifontwide=Ubuntu\ Mono\ derivative\ Powerline\ Bold
+    set toolbar=
+    set guioptions-=T
+    set guioptions-=m
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
+endif
 
  " Colorscheme
 colorscheme badwolf
@@ -466,12 +489,6 @@ vmap <C-v>  <Plug>(expand_region_shrink)
 inoremap <c-u> <c-o><Plug>(expand_region_expand)~
 nnoremap <c-u> <Plug>(expand_region_expand)~
 
- " Easy file navigation
-nnoremap <Return> G
-nnoremap <Backspace> gg
-onoremap <Return> G
-onoremap <Backspace> gg
-
  " File management
 nnoremap <Leader>o :CtrlP<Return>
 
@@ -713,6 +730,7 @@ augroup end
  " }}}
 
 
+" See 'wikitopian/hardmode' above
 
 
 
