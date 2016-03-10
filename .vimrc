@@ -81,6 +81,7 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
 
     " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
     Plugin 'ctrlpvim/ctrlp.vim'
+    let g:ctrlp_map = '<Leader>o'
 
     " A small Vim plugin for previewing markdown files in a browser.
     Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -491,10 +492,6 @@ vmap <C-v>  <Plug>(expand_region_shrink)
  " Press <c-U> to convert current word to uppercase/lowercase
 inoremap <c-u> <c-o><Plug>(expand_region_expand)~
 nnoremap <c-u> <Plug>(expand_region_expand)~
-
- " File management
-nnoremap <Leader>o :CtrlP<Return>
-
 
  " Select pasted text
 nnoremap gV `[v`]
