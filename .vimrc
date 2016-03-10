@@ -289,6 +289,9 @@ vnoremap é ~
 nnoremap à @
 nnoremap àà @@
 vnoremap à @
+vnoremap àà @@
+nnoremap ' `
+vnoremap ' `
 
  " Go to end of pasted text
 vnoremap <silent> y y`]
