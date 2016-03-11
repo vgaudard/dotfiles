@@ -61,7 +61,7 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
 
     " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion
     " engine for Vim.
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
 
     " Indent Guides is a plugin for visually displaying indent levels in
     " Vim.
@@ -235,6 +235,7 @@ endif
  "################################################################################
  "############################### Appearance #####################################
  "################################################################################
+  " {{{
 
 if has("gui_running")
     set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular
@@ -246,11 +247,14 @@ if has("gui_running")
     set guioptions-=R
     set guioptions-=l
     set guioptions-=L
+    au GUIEnter * call system('wmctrl -i -b add,maximized_vert,maximized_horz -r '.v:windowid)
 endif
+
 
  " Colorscheme
 colorscheme badwolf
 
+ " }}}
 
  "################################################################################
  "############################### Vim commands ###################################
@@ -261,6 +265,7 @@ set showcmd		    " Show (partial) command in status line.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set incsearch		" Incremental search
+set hlsearch		" Highlight search results
 set autowrite		" Automatically save before commands like :next and :make
 set hidden		    " Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
@@ -274,6 +279,7 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 set textwidth=0
 syntax on
 
+set infercase
 set nocompatible
 
 if has("vms")
@@ -521,6 +527,14 @@ nnoremap <Leader>bn  :set number! relativenumber!<Return>
  " Toggle line wrap
 nnoremap <Leader>bw  :set wrap!<Return>
 
+ " Highlight trailing whitespaces
+highlight TrailingWhitespace ctermbg=white guibg=white
+nnoremap <Leader>bs  :match TrailingWhitespace /\s\+$/<Return>
+nnoremap <Leader>bS  :match<Return>
+
+ " Remove highlight
+nnoremap <Leader>bl :nohlsearch<Return>
+
  " Add an empty line
 nnoremap <Leader><Return>  o<Esc>
 
@@ -617,6 +631,12 @@ augroup semicolon_shortcuts
     autocmd!
     " Add a semicolon at the end of the line
     autocmd Filetype c,cpp,cs,java,javascript          nnoremap  <buffer>  <silent>  <LocalLeader>;  mqA;<esc>`q"<Return>
+augroup END
+
+augroup vimscript_shortcuts
+    autocmd!
+    autocmd Filetype vim                               inoremap  <buffer>  <Tab>    <c-x><c-v>
+    autocmd Filetype vim                               inoremap  <buffer>  <s-Tab>    <c-p>
 augroup END
  " }}}
 
