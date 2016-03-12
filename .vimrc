@@ -323,7 +323,7 @@ onoremap j gj
 nnoremap k gk
 vnoremap k gk
 onoremap k gk
-}}}
+" }}}
 " }}}
 
 "###############################
@@ -693,6 +693,15 @@ augroup end
 " }}}
 " }}}
 
+"###############################
+"#### Auto-comment options #####
+"###############################
+" {{{
+augroup autocomment_options
+    autocmd!
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup end
+" }}}
 " }}}
 
 "################################################################################
