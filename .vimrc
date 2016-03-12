@@ -351,9 +351,15 @@ nnoremap <silent>  <Leader>wq  :exit<Return>
 " {{{
 " {{{
 nnoremap <Leader>ee  :vnew<Return>
+nnoremap <Leader>e<Space>  :vsplit<Return>
 nnoremap <Leader>ev  :vsplit $MYVIMRC<Return>
 nnoremap <Leader>eb  :vsplit $HOME/.bashrc<Return>
 nnoremap <Leader>ea  :vsplit $HOME/.bash_aliases<Return>
+nnoremap <Leader>eE  :new<Return>
+nnoremap <Leader>e<s-Space>  :split<Return>
+nnoremap <Leader>eV  :split $MYVIMRC<Return>
+nnoremap <Leader>eB  :split $HOME/.bashrc<Return>
+nnoremap <Leader>eA  :split $HOME/.bash_aliases<Return>
 "nnoremap <Leader>et  :silent !todo<Space>
 function! EditTodo ()
     let l:todoArguments = input("!todo ")
