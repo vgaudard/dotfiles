@@ -120,8 +120,8 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     augroup cancer_mode
         autocmd!
         autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+        autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <leader>bh <Esc>:call ToggleHardMode()<Return>
     augroup end
-    nnoremap <leader>bh <Esc>:call ToggleHardMode()<Return>
     " }}}
 
     call vundle#end()
@@ -325,10 +325,12 @@ vnoremap k gk
 onoremap k gk
 " }}}
 
-" Quick searches
+"  Quickfix
 " {{{
-nnoremap <Leader>g  :execute 'grep -R' . shellescape("<cWORD>") . "."<Return>
-" foo;ls
+nnoremap <Leader>fn     :cnext<Return>
+nnoremap <Leader>fp     :cprevious<Return>
+nnoremap <Leader>fc     :cclose<Return>
+nnoremap <Leader>fo     :copen<Return>
 " }}}
 " }}}
 
