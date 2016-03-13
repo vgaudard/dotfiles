@@ -121,7 +121,7 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
         autocmd!
         autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
     augroup end
-    nnoremap <leader>bh <Esc>:call ToggleHardMode()<CR>
+    nnoremap <leader>bh <Esc>:call ToggleHardMode()<Return>
     " }}}
 
     call vundle#end()
@@ -264,12 +264,12 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 " Completion
 set infercase
 
-if has("vms")
-    set nobackup		" do not keep a backup file, use versions instead
-else
-    set backup		" keep a backup file (restore to previous version)
-    set undofile		" keep an undo file (undo changes after closing)
-endif
+" Vim file management
+set backup		" keep a backup file (restore to previous version)
+set undofile		" keep an undo file (undo changes after closing)
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 
 "#### Remapping for an AZERTY keyboard
 nnoremap ù .
@@ -324,6 +324,12 @@ nnoremap k gk
 vnoremap k gk
 onoremap k gk
 " }}}
+
+" Quick searches
+" {{{
+nnoremap <Leader>g  :execute 'grep -R' . shellescape("<cWORD>") . "."<Return>
+" foo;ls
+" }}}
 " }}}
 
 "###############################
@@ -355,11 +361,12 @@ nnoremap <Leader>e<Space>  :vsplit<Return>
 nnoremap <Leader>ev  :vsplit $MYVIMRC<Return>
 nnoremap <Leader>eb  :vsplit $HOME/.bashrc<Return>
 nnoremap <Leader>ea  :vsplit $HOME/.bash_aliases<Return>
-nnoremap <Leader>eE  :new<Return>
-nnoremap <Leader>e<s-Space>  :split<Return>
-nnoremap <Leader>eV  :split $MYVIMRC<Return>
-nnoremap <Leader>eB  :split $HOME/.bashrc<Return>
-nnoremap <Leader>eA  :split $HOME/.bash_aliases<Return>
+nnoremap <Leader>Ee  :new<Return>
+nnoremap <Leader>EE  :new<Return>
+nnoremap <Leader>E<Space>  :split<Return>
+nnoremap <Leader>Ev  :split $MYVIMRC<Return>
+nnoremap <Leader>Eb  :split $HOME/.bashrc<Return>
+nnoremap <Leader>Ea  :split $HOME/.bash_aliases<Return>
 "nnoremap <Leader>et  :silent !todo<Space>
 function! EditTodo ()
     let l:todoArguments = input("!todo ")
@@ -590,12 +597,12 @@ nnoremap <Leader>s  :SyntasticCheck<Return>
 " {{{
 " Tabular
 " {{{
-nnoremap <Leader>a=        :Tabularize /=<CR>
-vnoremap <Leader>a=        :Tabularize /=<CR>
-nnoremap <Leader>a:        :Tabularize /:\zs<CR>
-vnoremap <Leader>a:        :Tabularize /:\zs<CR>
-nnoremap <Leader>a<Space>  :Tabularize /<\S*\zs<CR>
-vnoremap <Leader>a<Space>  :Tabularize /<\S*\zs<CR>
+nnoremap <Leader>a=        :Tabularize /=<Return>
+vnoremap <Leader>a=        :Tabularize /=<Return>
+nnoremap <Leader>a:        :Tabularize /:\zs<Return>
+vnoremap <Leader>a:        :Tabularize /:\zs<Return>
+nnoremap <Leader>a<Space>  :Tabularize /<\S*\zs<Return>
+vnoremap <Leader>a<Space>  :Tabularize /<\S*\zs<Return>
 " }}}
 " }}}
 
