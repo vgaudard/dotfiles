@@ -49,17 +49,6 @@ function! AutoGet()
         echom "Trying to download badwolf colorscheme"
         !wget -P $HOME"/.vim/colors/" "https://raw.githubusercontent.com/sjl/badwolf/master/colors/badwolf.vim"
     endif
-    if s:autoget_vundleNowInstalled == 1
-        " There are so many ways this could go wrong, let's not rush into it
-        " Moreover, this shouldn't affect local variables,  but for safety reasons, let's put it last in auto-get
-        call getchar("If this is not the first time you see this warning, kill the vim process and clean up your .vimrc.\nOtherwise just press <Return>")
-        let s:autoget_currentlySourcing = 1
-        " We check above if this variable is set.
-        " Thus, theoretically, this should only source the Vundle part
-        source $MYVIMRC
-        unlet s:autoget_currentlySourcing
-        PluginInstall
-    endif
     unlet s:autoget_getAll
     unlet s:autoget_getNothing
     unlet s:autoget_getVundle
@@ -68,4 +57,8 @@ function! AutoGet()
     unlet s:autoget_promptAnswer
 endfunction
 call AutoGet()
+!mkdir $HOME . "/.vim/"
+!mkdir $HOME . "/.vim/backup"
+!mkdir $HOME . "/.vim/undo"
+!mkdir $HOME . "/.vim/swap"
 quit
