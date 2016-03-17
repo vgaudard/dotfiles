@@ -125,6 +125,9 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     augroup end
     " }}}
 
+    " A Vim color scheme. http://stevelosh.com/projects/badwolf/
+    Plugin 'sjl/badwolf'
+
     call vundle#end()
     filetype plugin indent on
 endif
