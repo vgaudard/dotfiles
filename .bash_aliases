@@ -37,3 +37,6 @@ alias le="less"
 alias teamspeak="/opt/TeamSpeak3-Client-linux_amd64/ts3client_runscript.sh"
 
 #alias android-studio="/home/victor/android-studio/bin/studio.sh"
+
+alias t="todo"
+
