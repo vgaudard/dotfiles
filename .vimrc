@@ -615,8 +615,8 @@ augroup end
 " {{{
 augroup movement_markdown
     autocmd!
-    autocmd FileType markdown :onoremap ih :<c-u>execute  "normal! ?^\\(=\\\\|-\\)\\+$\r:nohlsearch\rkvg_"<cr>
-    autocmd FileType markdown :onoremap ah :<c-u>execute  "normal! ?^\\(=\\\\|-\\)\\+$\r:nohlsearch\rg_vk0"<cr>
+    autocmd FileType markdown :onoremap ih :<c-u>execute  "normal! ?^\\(=\\\\|-\\)\\+$\r:nohlsearch\rkvg_"<Return>
+    autocmd FileType markdown :onoremap ah :<c-u>execute  "normal! ?^\\(=\\\\|-\\)\\+$\r:nohlsearch\rg_vk0"<Return>
 augroup end
 " }}}
 " }}}
