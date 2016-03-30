@@ -107,7 +107,7 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     Plugin 'scrooloose/nerdcommenter'
 
     " Vim omnicompletion (intellisense) and more for c#
-    Plugin 'OmniSharp/Omnisharp-vim'
+    "Plugin 'OmniSharp/Omnisharp-vim'
 
     " dispatch.vim: asynchronous build and test dispatcher
     Plugin 'tpope/vim-dispatch'
@@ -116,14 +116,22 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     Plugin 'wellle/targets.vim'
 
     " Hard Mode is a plugin which disables the arrow keys, the hjkl keys, the page up/down keys, and a handful of other keys which allow one to rely on character-wise navigation.
-    Plugin 'wikitopian/hardmode'
+    "Plugin 'wikitopian/hardmode'
     " {{{
+    "augroup cancer_mode
+        "autocmd!
+        "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+        "autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <leader>bh <Esc>:call ToggleHardMode()<Return>
+    "augroup end
+    " }}}
+
+    " Plugin to help you stop repeating the basic movement keys 
+    Plugin 'takac/vim-hardtime'
     augroup cancer_mode
         autocmd!
-        autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-        autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <leader>bh <Esc>:call ToggleHardMode()<Return>
+        autocmd VimEnter,BufNewFile,BufReadPost * silent! HardTimeOn
+        autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <leader>bh :HardTimeToggle<Return>
     augroup end
-    " }}}
 
     " A Vim color scheme. http://stevelosh.com/projects/badwolf/
     Plugin 'sjl/badwolf'
