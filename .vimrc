@@ -125,13 +125,17 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     "augroup end
     " }}}
 
-    " Plugin to help you stop repeating the basic movement keys 
+    " Plugin to help you stop repeating the basic movement keys
     Plugin 'takac/vim-hardtime'
     augroup cancer_mode
         autocmd!
         autocmd VimEnter,BufNewFile,BufReadPost * silent! HardTimeOn
         autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <leader>bh :HardTimeToggle<Return>
     augroup end
+
+    " Vim plugin that allows use of vifm as a file picker
+    Plugin 'vifm/vifm.vim'
+
 
     " A Vim color scheme. http://stevelosh.com/projects/badwolf/
     Plugin 'sjl/badwolf'
