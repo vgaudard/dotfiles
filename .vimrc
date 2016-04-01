@@ -525,7 +525,8 @@ nnoremap <Leader>bt :set cursorline! cursorcolumn!<Return>
 nnoremap <silent> <Leader>bz     :let &l:foldcolumn=4-&l:foldcolumn<Return>
 
 " GitGutter
-nnoremap <Leader>bg :GitGutterToggle<Return>
+nnoremap <Leader>bgg :GitGutterToggle<Return>
+nnoremap <Leader>bgh :GitGutterLineHighlightsEnable<Return>
 
 " }}}
 
