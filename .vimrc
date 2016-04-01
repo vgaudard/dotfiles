@@ -107,7 +107,7 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     Plugin 'scrooloose/nerdcommenter'
 
     " Vim omnicompletion (intellisense) and more for c#
-    Plugin 'OmniSharp/Omnisharp-vim'
+    "Plugin 'OmniSharp/Omnisharp-vim'
 
     " dispatch.vim: asynchronous build and test dispatcher
     Plugin 'tpope/vim-dispatch'
@@ -132,6 +132,9 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
         autocmd VimEnter,BufNewFile,BufReadPost * silent! HardTimeOn
         autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <Leader>bh :HardTimeToggle<Return>
     augroup END
+
+    " Vim plugin that allows use of vifm as a file picker
+    Plugin 'vifm/vifm.vim'
 
     " A Vim color scheme. http://stevelosh.com/projects/badwolf/
     Plugin 'sjl/badwolf'
