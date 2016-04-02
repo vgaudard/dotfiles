@@ -226,6 +226,12 @@ filextype */
         \ Thunar %f &,
 fileviewer .*/,*/ tree %f
 
+" Comic archives
+filextype *.cbr,*.cbz
+        \ evince %f &> /dev/null &
+fileviewer *.cbr unrar v %c
+fileviewer *.cbz zip -sf %c
+
 " Syntax highlighting in preview
 "
 " Explicitly set highlight type for some extensions
