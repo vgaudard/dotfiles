@@ -1,12 +1,10 @@
 scriptencoding utf-8
-set nocompatible
 
 "################################################################################
 "############################### Vundle plugins #################################
 "################################################################################
 " {{{
 if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
-    set nocompatible
     filetype off
 
     " set the runtime path to include Vundle and initialize
