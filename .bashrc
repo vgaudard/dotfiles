@@ -55,7 +55,7 @@ if [ "$color_prompt" = yes ]; then
             PS1+="\[\e[1;31m\](\[$FancyX\] $lastCommand)"
         fi
         local d=$(date +"%H:%M:%S")
-        PS1="$PS1\[\e[0;33m\]{$d}" # Date and time
+        #PS1="$PS1\[\e[0;33m\]{$d}" # Date and time
         if [[ $EUID -ne 0 ]]; then  # if not root
             #PS1="$PS1\[\e[1;33m\](\u@\h\[$txtrst\]:" # Username and hostname
             PS1="$PS1\[\e[1;33m\](\u\[$txtrst\]:" # Username and hostname
