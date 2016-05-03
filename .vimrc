@@ -247,15 +247,6 @@ nnoremap <Leader>t  :TlistToggle<Return>
 
 " Buffer navigation
 " {{{
-" Navigate in virtual line (j means the character below and not the line below)
-nnoremap j gj
-vnoremap j gj
-onoremap j gj
-nnoremap k gk
-vnoremap k gk
-onoremap k gk
-" }}}
-
 "  Quickfix
 " {{{
 nnoremap <Leader>fn     :cnext<Return>
