@@ -125,11 +125,16 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
 
     " Plugin to help you stop repeating the basic movement keys
     Plugin 'takac/vim-hardtime'
+    " {{{
     augroup cancer_mode
         autocmd!
         autocmd VimEnter,BufNewFile,BufReadPost * silent! HardTimeOn
         autocmd VimEnter,BufNewFile,BufReadPost * nnoremap <Leader>bh :HardTimeToggle<Return>
     augroup END
+    let g:hardtime_ignore_buffer_patterns = [ ".*/" ]
+    let g:hardtime_maxcount = 2
+    let g:hardtime_allow_different_key = 1
+    " }}}
 
     " Vim plugin that allows use of vifm as a file picker
     Plugin 'vifm/vifm.vim'
