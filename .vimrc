@@ -201,8 +201,10 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 set wrap
 set breakindent
 set breakindentopt=sbr
-" I use a unicode curly array with a <backslash><space>
 set showbreak=↪>\
+
+" Line number
+set relativenumber number
 
 " Completion
 set infercase
