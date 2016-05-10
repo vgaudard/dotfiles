@@ -181,6 +181,7 @@ set hidden		    " Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
 set textwidth=0
 syntax on
+set modeline
 
 " Search options
 set ignorecase		" Do case insensitive matching
