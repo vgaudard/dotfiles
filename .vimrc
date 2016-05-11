@@ -182,6 +182,8 @@ set hidden		    " Hide buffers when they are abandoned
 set textwidth=0
 syntax on
 set modeline
+set timeout
+set timeoutlen=200
 
 " Search options
 set ignorecase		" Do case insensitive matching
