@@ -5,7 +5,8 @@ SYMLINKS=([".bashrc"]=""
           [".bash_aliases"]=""
           [".vimrc"]=""
           [".inputrc"]=""
-          ["vifmrc"]="$HOME/.vifm")
+          ["vifmrc"]="$HOME/.vifm"
+          ["rc.lua"]="$HOME/.config/awesome")
 
 for f in "${!SYMLINKS[@]}"; do
     folder=${SYMLINKS["$f"]:-$HOME}
