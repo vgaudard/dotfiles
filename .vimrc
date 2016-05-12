@@ -183,7 +183,7 @@ set textwidth=0
 syntax on
 set modeline
 set timeout
-set timeoutlen=200
+set timeoutlen=300
 
 " Search options
 set ignorecase		" Do case insensitive matching
