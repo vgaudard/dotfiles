@@ -475,4 +475,4 @@ require("battery-warning")
 
 
 
--- vim: fdm=marker fdm={{{,}}}
+-- vim: fdm=marker fmr={{{,}}}
