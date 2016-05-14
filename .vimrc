@@ -162,7 +162,6 @@ if has("gui_running")
     set guioptions-=R
     set guioptions-=l
     set guioptions-=L
-    au GUIEnter * call system('wmctrl -i -b add,maximized_vert,maximized_horz -r '.v:windowid)
 endif
 
 " Colorscheme
