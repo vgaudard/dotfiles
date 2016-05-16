@@ -1,17 +1,11 @@
---[[
-Precious was originally written by Robin Hahling
-(Cloned from git://rolinh.ch/precious.git)
-See LICENSE
---]]
--- Battery status widget
+-- battery status widget
 require("precious.utils")
-local vicious = require("vicious")
-local wibox = require("wibox")
 
 local path = "/sys/class/power_supply/BAT0/"
 showbatinfos = nil
 lock = false
 pluglock = false
+unplugtime = 0
 
 
 local function dispinfo(path)
@@ -106,7 +100,6 @@ local function activebat(path)
 	local perct, res, batime_h, batime_m, batime, f, tmp
 	-- files we read from
 	local charge_full, charge_now, current_now, present, status
-
 
 	present = readfile(path .. "present", "*number")
 	if (present == 0) then
@@ -206,21 +199,14 @@ local function activebat(path)
 	return res
 end
 
+--batinfo = widget({ type = "textbox" , name = "batinfo" })
 batinfo = wibox.widget.textbox()
 batinfo:connect_signal('mouse::enter', function () dispinfo(path) end)
 batinfo:connect_signal('mouse::leave', function () clearinfo(showbatinfos) end)
---vicious.register(batinfo, vicious.widgets.bat, '')
 
 -- Assign a hook to update info
-activebat_timer = timer({timeout = 1})
-activebat_timer:connect_signal("timeout", function ()
-    local f = io.open("/sys/class/power_supply/BAT0/capacity", "r")
-    if f == nil then
-        return
-    else
-        io.close(f)
-    end
-    batinfo.text = "BAT: " .. activebat(path) .. " |" end)
-activebat_timer:start()
-
-return batinfo
+--activebat_timer = timer({timeout = 1})
+--activebat_timer:connect_signal("timeout", function ()
+--batinfo.text = "BAT: " .. activebat(path) .. " |" end)
+vicious.register(batinfo, vicious.widgets.bat, "BAT:($1|$2%|$3 remaining)", 30, "BAT0")
+--activebat_timer:start()

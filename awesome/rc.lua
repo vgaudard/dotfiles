@@ -25,7 +25,7 @@ require("debian.menu")
 require("lua_completion")
 require("lua_usefuleval")
 -- Precious widgets
-local batinfo = require("precious.battery")
+require("precious.battery")
 -- }}}
 
 -- {{{ Error handling
@@ -271,8 +271,8 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(netwidget)
-    right_layout:add(textclock)
     right_layout:add(batinfo)
+    right_layout:add(textclock)
     right_layout:add(layoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
