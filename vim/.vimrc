@@ -306,6 +306,8 @@ nnoremap <silent>  <Leader>ww  :update<Return>
 nnoremap <silent>  <Leader>wa  :wall<Return>
 nnoremap <silent>  <Leader>q   :q<Return>
 nnoremap <silent>  <Leader>wq  :exit<Return>
+nnoremap <silent>  <Leader>wn  :update<Return>:next<Return>
+nnoremap <silent>  <Leader>wp  :update<Return>:previous<Return>
 " }}}
 
 " Quick edit files
