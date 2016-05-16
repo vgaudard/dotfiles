@@ -176,8 +176,15 @@ menubar.utils.terminal = commands.terminal -- Set the terminal for applications 
 -- Initialize widget, use widget({ type = "textbox" }) for awesome < 3.5
 netwidget = wibox.widget.textbox()
 -- Register widget
-local test = 2
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${wlp2s0 down_kb}</span> <span color="#7F9F7F">${wlp2s0 up_kb}</span>', 3)
+local netwidget_text = '<span color="#CC9393">${wlp2s0 down_kb}</span> <span color="#7F9F7F">${wlp2s0 up_kb}</span>';
+local netwidget_textparts = {};
+for file in lfs.dir("/sys/class/net") do
+    if file:byte(1) ~= string.byte('.') and file ~= "lo" then
+        local interfacename = tostring(file);
+        netwidget_textparts[#netwidget_textparts + 1] =  '<span>' .. interfacename .. '</span>(<span color="#CC9393">${' .. interfacename .. ' down_kb}</span>,<span color="#7F9F7F">${' .. interfacename ..' up_kb}</span>)'
+    end
+end
+vicious.register(netwidget, vicious.widgets.net, table.concat(netwidget_textparts, "|"), 3)
 -- }}}
 
 -- {{{ Textclock widget
