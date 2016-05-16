@@ -1,20 +1,20 @@
 -- {{{ Libraries
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+gears = require("gears")
+awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
 
 -- Widget and layout library
-local wibox = require("wibox")
+wibox = require("wibox")
 
 -- Theme handling library
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 
 -- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
-local vicious = require("vicious")
+naughty = require("naughty")
+menubar = require("menubar")
+vicious = require("vicious")
 
 -- Lua File System
 require("lfs")
@@ -22,6 +22,8 @@ require("lfs")
 -- Load Debian menu entries
 require("debian.menu")
 
+require("lua_completion")
+require("lua_usefuleval")
 -- Precious widgets
 local batinfo = require("precious.battery")
 -- }}}
@@ -174,7 +176,8 @@ menubar.utils.terminal = commands.terminal -- Set the terminal for applications 
 -- Initialize widget, use widget({ type = "textbox" }) for awesome < 3.5
 netwidget = wibox.widget.textbox()
 -- Register widget
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${eno1 down_kb}</span> <span color="#7F9F7F">${eno1 up_kb}</span>', 3)
+local test = 2
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${wlp2s0 down_kb}</span> <span color="#7F9F7F">${wlp2s0 up_kb}</span>', 3)
 -- }}}
 
 -- {{{ Textclock widget
@@ -277,7 +280,7 @@ end
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
@@ -335,7 +338,7 @@ globalkeys = awful.util.table.join(
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: ", completion_callback = lua_completion },
                   promptbox[mouse.screen].widget,
-                  awful.prompt.eval, nil,
+                  usefuleval, lua_completion,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
