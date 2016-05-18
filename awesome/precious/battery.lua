@@ -1,3 +1,8 @@
+--[[
+Precious was originally written by Robin Hahling
+(Cloned from git://rolinh.ch/precious.git)
+See LICENSE
+--]]
 -- battery status widget
 require("precious.utils")
 
@@ -49,14 +54,20 @@ local function dispinfo(path)
 
 	f = io.open(path .. "charge_full_design", "r")
 	if not f then
-		f = assert(io.open(path .. "energy_full_design", "r"))
+		f = io.open(path .. "energy_full_design", "r")
+        if not f then
+            return
+        end
 	end
 	chfd = f:read("*number")
 	f:close()
 
 	f = io.open(path .. "charge_full", "r")
 	if not f then
-		f = assert(io.open(path .. "energy_full", "r"))
+		f = io.open(path .. "energy_full", "r")
+        if not f then
+            return
+        end
 	end
 	chf = f:read("*number")
 	f:close()
@@ -135,7 +146,7 @@ local function activebat(path)
 		lock = false
 	end
 
-	if perct < 15 then
+	if perct < 25 then
 		res = '<span color="red">' .. res .. '</span>'
 		if (not lock and status == 'Discharging\n') then
 			lock = true
@@ -204,9 +215,24 @@ batinfo = wibox.widget.textbox()
 batinfo:connect_signal('mouse::enter', function () dispinfo(path) end)
 batinfo:connect_signal('mouse::leave', function () clearinfo(showbatinfos) end)
 
+function checkBattery ()
+    local f = io.open(path)
+    if f then
+        io.close(f)
+        if not batwatcher_batterypresent then
+            batwatcher_batterypresent = true
+            vicious.register(batinfo, vicious.widgets.bat, "BAT:($1|$2%|$3 remaining)", 30, "BAT0")
+        end
+    else
+        batwatcher_batterypresent = false
+        batinfo:set_text("")
+        vicious:unregister(batinfo)
+    end
+end
+batwatcher_batterypresent = true
 -- Assign a hook to update info
---activebat_timer = timer({timeout = 1})
---activebat_timer:connect_signal("timeout", function ()
---batinfo.text = "BAT: " .. activebat(path) .. " |" end)
+batwatcher = timer({timeout = 30})
+batwatcher:connect_signal("timeout", checkBattery)
 vicious.register(batinfo, vicious.widgets.bat, "BAT:($1|$2%|$3 remaining)", 30, "BAT0")
---activebat_timer:start()
+checkBattery()
+batwatcher:start()

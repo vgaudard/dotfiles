@@ -10,7 +10,10 @@ See LICENSE
 function readfile(path, mode)
 	local f, ret
 
-	f = assert(io.open(path, "r"))
+	f = io.open(path, "r")
+    if not f then
+        return nil
+    end
 	ret = f:read(mode)
 	f:close()
 
