@@ -28,7 +28,7 @@ function usefuleval(s)
                 naughty.notify({ title = "Result", text = awful.util.escape((highest_index > 1 and "s" or "")..tostring(table.concat(ret, ", "))) , screen = mouse.screen, timeout = 10} )
             else
                 -- promptbox[mouse.screen].text = "Result: Nothing";
-                naughty.notify({ title = "Result", text = "No result" , screen = mouse.screen, timeout = 10} )
+                naughty.notify({ text = "No result" , screen = mouse.screen, timeout = 10} )
             end
         else
             err = ret[2];

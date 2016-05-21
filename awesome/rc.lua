@@ -485,6 +485,11 @@ awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (nm-appl
 require("battery-warning")
 -- }}}
 
+-- {{{ Utils
+function alert(text)
+    naughty.notify({ title = "Alert", text=text })
+end
+-- }}}
 
 
 -- vim: fdm=marker fmr={{{,}}}
