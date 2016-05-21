@@ -126,7 +126,10 @@ local function activebat(path)
 
 	f = io.open(path .. "charge_now", "r")
 	if not f then
-		f = assert(io.open(path .. "energy_now", "r"))
+		f = io.open(path .. "energy_now", "r")
+        if not f then
+            return
+        end
 	end
 	charge_now = f:read("*number")
 	f:close()
@@ -139,7 +142,7 @@ local function activebat(path)
 	f:close()
 
 	perct = (charge_now/charge_full) * 100
-	res = string.format("%.2f", perct)
+	res = string.format("%.0f", perct)
 
 	-- use a lock to avoid displaying the popup multiple times
 	if perct >= 15 then
@@ -215,6 +218,7 @@ batinfo = wibox.widget.textbox()
 batinfo:connect_signal('mouse::enter', function () dispinfo(path) end)
 batinfo:connect_signal('mouse::leave', function () clearinfo(showbatinfos) end)
 
+--[[
 function checkBattery ()
     local f = io.open(path)
     if f then
@@ -230,9 +234,21 @@ function checkBattery ()
     end
 end
 batwatcher_batterypresent = true
--- Assign a hook to update info
 batwatcher = timer({timeout = 30})
 batwatcher:connect_signal("timeout", checkBattery)
 vicious.register(batinfo, vicious.widgets.bat, "BAT:($1|$2%|$3 remaining)", 30, "BAT0")
 checkBattery()
 batwatcher:start()
+--]]
+-- Assign a hook to update info
+function displayBattery()
+    local actbat = activebat(path)
+    if actbat ~= nil then
+        batinfo:set_markup("BAT: " .. activebat(path) .. " |")
+    end
+end
+
+activebat_timer = timer({timeout = 1})
+activebat_timer:connect_signal("timeout", displayBattery)
+displayBattery()
+activebat_timer:start()

@@ -26,6 +26,7 @@ require("lua_completion")
 require("lua_usefuleval")
 -- Precious widgets
 require("precious.battery")
+require("precious.sound")
 -- }}}
 
 -- {{{ Error handling
@@ -272,6 +273,7 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(netwidget)
     right_layout:add(batinfo)
+    right_layout:add(tb_volume)
     right_layout:add(textclock)
     right_layout:add(layoutbox[s])
 
@@ -361,9 +363,9 @@ awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey }, "v", function() awful.util.spawn("gvim") end),
 
     -- Volume Control
-    awful.key({}, "XF86AudioRaiseVolume",function () volumecfg:up() end),
-    awful.key({}, "XF86AudioLowerVolume",function  () volumecfg:down() end),
-    awful.key({}, "XF86AudioMute",function  () volumecfg:toggle() end),
+    awful.key({}, "XF86AudioRaiseVolume",function () volume("up", tb_volume) end),
+    awful.key({}, "XF86AudioLowerVolume",function  () volume("down", tb_volume) end),
+    awful.key({}, "XF86AudioMute",function  () volume("mute", tb_volume) end),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessDown", function ()
