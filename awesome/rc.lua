@@ -91,6 +91,22 @@ local layouts =
 }
 -- }}}
 
+-- {{{ Utils
+function alert(text)
+    naughty.notify({ title = "Alert", text=text })
+end
+
+function setInput (input, value)
+    if (value ~= 0) and (value ~= 1) then
+        return
+    end
+    local f = io.popen("xinput list | grep -i " .. input .. " | grep -oP '(?<=id=)\\d+'")
+    local id = f:read("*number")
+    f:close()
+    awful.util.spawn("xinput set-prop " .. id .. " 'Device Enabled' " .. value)
+end
+-- }}}
+
 -- {{{ Wallpaper
 --[[
 if beautiful.wallpaper then
@@ -490,11 +506,6 @@ awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (nm-appl
 require("battery-warning")
 -- }}}
 
--- {{{ Utils
-function alert(text)
-    naughty.notify({ title = "Alert", text=text })
-end
--- }}}
 
 
 -- vim: fdm=marker fmr={{{,}}}
