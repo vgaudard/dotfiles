@@ -27,6 +27,8 @@ require("lua_usefuleval")
 -- Precious widgets
 require("precious.battery")
 require("precious.sound")
+require("precious.cpu")
+require("precious.ram")
 -- }}}
 
 -- {{{ Error handling
@@ -274,6 +276,9 @@ for s = 1, screen.count() do
     right_layout:add(netwidget)
     right_layout:add(batinfo)
     right_layout:add(tb_volume)
+    right_layout:add(cpuinfo)
+    right_layout:add(cputemp)
+    right_layout:add(meminfo)
     right_layout:add(textclock)
     right_layout:add(layoutbox[s])
 

@@ -38,11 +38,11 @@ function activecpu(nbcores)
 	return res
 end
 
-cpuinfo = widget({ type = "textbox", name = "cpuinfo" })
+cpuinfo = wibox.widget.textbox()
 
 -- register the hook to update the display
 cpuinfo_timer = timer({timeout = 1})
-cpuinfo_timer:add_signal("timeout", function() cpuinfo.text = activecpu(getnbcore()) end)
+cpuinfo_timer:connect_signal("timeout", function() cpuinfo:set_markup(activecpu(getnbcore())) end)
 cpuinfo_timer:start()
 
 
@@ -67,9 +67,9 @@ function activecputemp()
 	return temp
 end
 
-cputemp = widget({ type = "textbox" , name = "cputemp" })
+cputemp = wibox.widget.textbox()
 
 -- Assign a hook to update temperature
 cputemp_timer = timer({timeout = 1})
-cputemp_timer:add_signal("timeout", function() cputemp.text = "@ " .. activecputemp() .. "°C | RAM: " end)
+cputemp_timer:connect_signal("timeout", function() cputemp:set_markup("@ " .. activecputemp() .. "°C | RAM: ") end)
 cputemp_timer:start()

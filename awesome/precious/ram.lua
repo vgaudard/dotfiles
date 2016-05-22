@@ -78,11 +78,11 @@ function activeram()
 	return res
 end
 
-meminfo = widget({ type = "textbox", name = "meminfo" })
-meminfo:add_signal('mouse::enter', function () dispinfo() end)
-meminfo:add_signal('mouse::leave', function () clearinfo(showraminfo) end)
+meminfo = wibox.widget.textbox()
+meminfo:connect_signal('mouse::enter', function () dispinfo() end)
+meminfo:connect_signal('mouse::leave', function () clearinfo(showraminfo) end)
 
 -- Assign a hook to update info
 meminfo_timer = timer({timeout = 1})
-meminfo_timer:add_signal("timeout", function() meminfo.text = activeram() .. " | "  end)
+meminfo_timer:connect_signal("timeout", function() meminfo:set_markup(activeram() .. " | ")  end)
 meminfo_timer:start()
