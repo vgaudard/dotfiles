@@ -10,12 +10,24 @@ SYMLINKS=(["bash/.bashrc"]=""
           ["awesome/lua_completion.lua"]="$HOME/.config/awesome"
           ["awesome/lua_usefuleval.lua"]="$HOME/.config/awesome"
           ["awesome/battery-warning.lua"]="$HOME/.config/awesome"
-          ["awesome/precious"]="$HOME/.config/awesome")
+          ["awesome/precious"]="$HOME/.config/awesome"
+          ["mail/.offlineimaprc"]=""
+          ["mail/offlineimap.py"]="$HOME/.mutt"
+          ["mail/muttrc"]="$HOME/.mutt"
+          ["mail/mailcap"]="$HOME/.mutt"
+          ["mail/.urlview"]=""
+          ["mail/.msmtprc"]=""
+          )
 
 FOLDERS=("$HOME/.vim/backup"
          "$HOME/.vim/undo"
          "$HOME/.vim/swap"
-         "$HOME/.config/awesome")
+         "$HOME/.config/awesome"
+         "$HOME/.mutt"
+         "$HOME/.mail"
+         "$HOME/.offlineimap"
+         "$HOME/.mail/vgaudardgmailperso"
+         )
 
 for d in "$FOLDERS"; do
     mkdir -p $d
