@@ -1,4 +1,4 @@
-# Paths ----------------------------------------------
+# {{{ Paths ----------------------------------------------
 
 set folder           = ~/.mail               # mailbox location
 set alias_file       = ~/.mutt/alias         # where to store aliases
@@ -8,8 +8,9 @@ set certificate_file = ~/.mutt/certificates  # where to store certs
 set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 set tmpdir           = /tmp/                 # where to keep temp files
 set signature        = ~/.mutt/sig           # my signature file
+# }}}
 
-# Basic Options --------------------------------------
+# {{{ Basic Options --------------------------------------
 set wait_key = no        # shut up, mutt
 set mbox_type = Maildir  # mailbox type
 set timeout = 3          # idle time before scanning
@@ -22,24 +23,28 @@ unset mark_old           # read/new is good enough for me
 set beep_new             # bell on new mails
 set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
+# }}}
 
-# Sidebar Patch --------------------------------------
+# {{{ Sidebar Patch --------------------------------------
 set sidebar_delim   = '  │'
 set sidebar_visible = yes
 set sidebar_width   = 24
 color sidebar_new color221 color233
+# }}}
 
-# Status Bar -----------------------------------------
+# {{{ Status Bar -----------------------------------------
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# }}}
 
-# Header Options -------------------------------------
+# {{{ Header Options -------------------------------------
 ignore *                                # ignore all headers
 unignore from: to: cc: date: subject:   # show only these
 unhdr_order *                           # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
+# }}}
 
-# Account Settings -----------------------------------
+# {{{ Account Settings -----------------------------------
 
 # Default inbox.
 set spoolfile = "+vgaudardinsa/INBOX"
@@ -59,8 +64,9 @@ mailboxes +vgaudardgmailperso/INBOX \
 # Other special folders.
 #set mbox      = "+vgaudardgmailperso/archive"
 set postponed = "+drafts"
+# }}}
 
-# Index View Options ---------------------------------
+# {{{ Index View Options ---------------------------------
 set date_format = "%m/%d"
 set index_format = "[%Z]  %D  %-20.20F  %s"
 set sort = threads                         # like gmail
@@ -68,8 +74,9 @@ set sort_aux = reverse-last-date-received  # like gmail
 set uncollapse_jump                        # don't collapse on an unread message
 set sort_re                                # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+# }}}
 
-# Index Key Bindings ---------------------------------
+# {{{ Index Key Bindings ---------------------------------
 bind index gg       first-entry
 bind index G        last-entry
 
@@ -87,13 +94,15 @@ macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to s
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+# }}}
 
-# Sidebar Navigation ---------------------------------
+# {{{ Sidebar Navigation ---------------------------------
 bind index,pager <down>   sidebar-next
 bind index,pager <up>     sidebar-prev
 bind index,pager <right>  sidebar-open
+# }}}
 
-# Pager View Options ---------------------------------
+# {{{ Pager View Options ---------------------------------
 set pager_index_lines = 10 # number of index lines to show
 set pager_context = 3      # number of context lines to show
 set pager_stop             # don't go to next message automatically
@@ -103,8 +112,9 @@ unset markers              # no ugly plus signs
 
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
+# }}}
 
-# Pager Key Bindings ---------------------------------
+# {{{ Pager Key Bindings ---------------------------------
 bind pager k  previous-line
 bind pager j  next-line
 bind pager gg top
@@ -116,8 +126,9 @@ bind pager R  group-reply
 bind attach <return> view-mailcap
 
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
+# }}}
 
-# Compose View Options -------------------------------
+# {{{ Compose View Options -------------------------------
 set realname = "Victor Gaudard"          # who am i?
 set envelope_from                    # which from?
 set sig_dashes                       # dashes before sig
@@ -139,3 +150,4 @@ set editor = "vim"        # Use terminal Vim to compose email.
 set sendmail = "/usr/bin/msmtp "
 set sendmail_wait = 0
 unset record
+# }}}
