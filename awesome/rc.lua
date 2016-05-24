@@ -310,7 +310,7 @@ end
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
@@ -478,6 +478,8 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { class = "Tor Browser" },
       properties = { floating = true } },
 }
 -- }}}
