@@ -641,7 +641,14 @@ augroup end
 " {{{
 augroup folding_vim
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim setlocal foldmethod=marker foldmarker={{{,}}}
+augroup end
+" }}}
+
+" {{{
+augroup folding_mutt
+    autocmd!
+    autocmd FileType muttrc setlocal foldmethod=marker foldmarker={{{,}}}
 augroup end
 " }}}
 

@@ -154,13 +154,13 @@ tags = {
         8,
         9 },
     layout = {
-        layouts[2],
-        layouts[2],
-        layouts[2],
-        layouts[2],
-        layouts[2],
-        layouts[2],
-        layouts[2],
+        layouts[3],
+        layouts[3],
+        layouts[3],
+        layouts[3],
+        layouts[3],
+        layouts[3],
+        layouts[3],
         awful.layout.suit.max,
         awful.layout.suit.magnifier }
 }

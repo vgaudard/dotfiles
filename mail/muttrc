@@ -1,0 +1,193 @@
+# {{{ Paths ----------------------------------------------
+
+set folder           = ~/.mail               # mailbox location
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = /tmp/                 # where to keep temp files
+set signature        = ~/.mutt/sig           # my signature file
+# }}}
+
+# {{{ Basic Options --------------------------------------
+set wait_key = no        # shut up, mutt
+set mbox_type = Maildir  # mailbox type
+set timeout = 3          # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set beep_new             # bell on new mails
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+# }}}
+
+# {{{ Sidebar Patch --------------------------------------
+set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 24
+color sidebar_new color221 color233
+# }}}
+
+# {{{ Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# }}}
+
+# {{{ Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+# }}}
+
+# {{{ Account Settings -----------------------------------
+
+# Default inbox.
+set spoolfile = "+vgaudardinsa/INBOX"
+
+# Alternate email addresses.
+#alternates
+
+# Mailboxes to show in the sidebar.
+mailboxes +vgaudardgmailperso/INBOX \
+          +vgaudardgmailperso/sent \
+          +vgaudardgmailperso/drafts \
+          +vgaudardgmailpro/INBOX \
+          +vgaudardgmailpro/sent \
+          +vgaudardgmailpro/drafts \
+          +vgaudardinsa/INBOX \
+
+# Other special folders.
+#set mbox      = "+vgaudardgmailperso/archive"
+set postponed = "+drafts"
+# }}}
+
+# {{{ Index View Options ---------------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+# }}}
+
+# {{{ Index Key Bindings ---------------------------------
+# Free my escape key!
+bind index <Esc><Tab>  noop
+bind index <Esc>C      noop
+bind index <Esc>F      noop
+bind index <Esc>G      noop
+bind index <Esc>P      noop
+bind index <Esc>V      noop
+bind index <Esc>b      noop
+bind index <Esc>c      noop
+bind index <Esc>d      noop
+bind index <Esc>e      noop
+bind index <Esc>f      noop
+bind index <Esc>i      noop
+bind index <Esc>k      noop
+bind index <Esc>l      noop
+bind index <Esc>n      noop
+bind index <Esc>p      noop
+bind index <Esc>r      noop
+bind index <Esc>s      noop
+bind index <Esc>t      noop
+bind index <Esc>u      noop
+bind index <Esc>v      noop
+bind generic <Esc>/    noop
+
+# vim-like movements
+bind index gg       first-entry
+bind index G        last-entry
+bind index \Cd      half-down
+bind index \Cu      half-up
+bind generic N        search-opposite
+macro index \Cf     "<half-down><half-down><previous-line>"  "scroll a full page down leaving one line"
+macro index \Cb     "<half-up><half-up><next-line>"          "scroll a full page up leaving one line"
+bind index \Ce      next-line
+bind index \Cy      previous-line
+bind index {        previous-thread
+bind index }        next-thread
+
+# vim/vifm-like keybindings
+bind index =        limit
+bind index l        display-message
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+# }}}
+
+# {{{ Sidebar Navigation ---------------------------------
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+bind index z<down>        sidebar-next-new
+bind index z<up>          sidebar-prev-new
+# }}}
+
+# {{{ Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+# }}}
+
+# {{{ Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+# }}}
+
+# {{{ Compose View Options -------------------------------
+set realname = "Victor Gaudard"          # who am i?
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+set editor = "vim"        # Use terminal Vim to compose email.
+
+set sendmail = "/usr/bin/msmtp "
+set sendmail_wait = 0
+unset record
+# }}}

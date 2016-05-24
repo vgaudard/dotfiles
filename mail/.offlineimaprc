@@ -1,0 +1,118 @@
+[general]
+ui = ttyui
+accounts = vgaudardgmailperso, vgaudardgmailpro, vgaudardinsa
+pythonfile=~/.mutt/offlineimap.py
+fsync = False
+
+[Account vgaudardgmailperso]
+localrepository = vgaudardgmailperso-Local
+remoterepository = vgaudardgmailperso-Remote
+status_backend = sqlite
+
+[Repository vgaudardgmailperso-Local]
+type = Maildir
+localfolders = ~/.mail/vgaudardgmailperso
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository vgaudardgmailperso-Remote]
+maxconnections = 1
+type = Gmail
+cert_fingerprint = 7ee6859105799c53ae5e166005090601e61999cb
+remoteuser = victor.15156@gmail.com
+remotepasseval = get_keychain_pass("victor.15156@gmail.com")
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Spam',
+                                             ]
+
+[Account vgaudardgmailpro]
+localrepository = vgaudardgmailpro-Local
+remoterepository = vgaudardgmailpro-Remote
+status_backend = sqlite
+
+[Repository vgaudardgmailpro-Local]
+type = Maildir
+localfolders = ~/.mail/vgaudardgmailpro
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository vgaudardgmailpro-Remote]
+maxconnections = 1
+type = Gmail
+cert_fingerprint = 7ee6859105799c53ae5e166005090601e61999cb
+remoteuser = victor.gaudard@gmail.com
+remotepasseval = get_keychain_pass("victor.gaudard@gmail.com")
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Spam',
+                                             ]
+
+[Account vgaudardgmailpro]
+localrepository = vgaudardgmailpro-Local
+remoterepository = vgaudardgmailpro-Remote
+status_backend = sqlite
+
+[Repository vgaudardgmailpro-Local]
+type = Maildir
+localfolders = ~/.mail/vgaudardgmailpro
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository vgaudardgmailpro-Remote]
+maxconnections = 1
+type = Gmail
+cert_fingerprint = 7ee6859105799c53ae5e166005090601e61999cb
+remoteuser = victor.gaudard@gmail.com
+remotepasseval = get_keychain_pass("victor.gaudard@gmail.com")
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Spam',
+                                             ]
+
+[Account vgaudardinsa]
+localrepository = vgaudardinsa-Local
+remoterepository = vgaudardinsa-Remote
+status_backend = sqlite
+
+[Repository vgaudardinsa-Local]
+type = Maildir
+localfolders = ~/.mail/vgaudardinsa
+
+[Repository vgaudardinsa-Remote]
+type = IMAP
+remotehost = mailhost.insa-rennes.fr
+remoteuser = vgaudard
+remotepasseval = get_keychain_pass("victor.gaudard@insa-rennes.fr")
+realdelete = no
+
