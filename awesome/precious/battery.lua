@@ -13,7 +13,7 @@ pluglock = false
 unplugtime = 0
 
 
-local function dispinfo(paths)
+local function dispinfo(batpaths)
     local f, infos, status, present, brand, model, techno, serial, cycles, voltmin
     local voltnow, chfd, chf, uptime, tmp, up_h, up_m, up_s, upbat_h, upbat_m, upbat
     local capi = {
@@ -129,8 +129,9 @@ local function activebat(paths)
             break
         end
     end
-    if present == 0 then
-        return '<span color="red">no</span>'
+    if present == 0 or path == nil then
+        return ''
+        --return '<span color="red">no</span>'
     end
 
     status = readfile(path .. "status", "*all")
@@ -259,8 +260,8 @@ batwatcher:start()
 -- Assign a hook to update info
 function displayBattery()
     local actbat = activebat(paths)
-    if actbat ~= nil then
-        batinfo:set_markup("BAT: " .. activebat(paths) .. " |")
+    if actbat ~= nil and actbat ~= '' then
+            batinfo:set_markup("BAT: " .. actbat .. " |")
     end
 end
 
