@@ -60,6 +60,7 @@ mailboxes +vgaudardgmailperso/INBOX \
           +vgaudardgmailpro/sent \
           +vgaudardgmailpro/drafts \
           +vgaudardinsa/INBOX \
+          +vgaudardlaposte/INBOX \
 
 # Other special folders.
 #set mbox      = "+vgaudardgmailperso/archive"

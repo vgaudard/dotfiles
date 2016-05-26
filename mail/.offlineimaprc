@@ -117,3 +117,20 @@ remotepasseval = get_keychain_pass("victor.gaudard@insa-rennes.fr")
 realdelete = no
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
+[Account vgaudardlaposte]
+localrepository = vgaudardlaposte-Local
+remoterepository = vgaudardlaposte-Remote
+status_backend = sqlite
+
+[Repository vgaudardlaposte-Local]
+type = Maildir
+localfolders = ~/.mail/vgaudardlaposte
+
+[Repository vgaudardlaposte-Remote]
+type = IMAP
+remotehost = imap.laposte.net
+remoteuser = victor.gaudard@laposte.net
+remotepasseval = get_keychain_pass("victor.gaudard@laposte.net")
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
