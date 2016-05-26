@@ -22,7 +22,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 [Repository vgaudardgmailperso-Remote]
 maxconnections = 1
 type = Gmail
-cert_fingerprint = 7ee6859105799c53ae5e166005090601e61999cb
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = victor.15156@gmail.com
 remotepasseval = get_keychain_pass("victor.15156@gmail.com")
 realdelete = no
@@ -54,7 +54,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 [Repository vgaudardgmailpro-Remote]
 maxconnections = 1
 type = Gmail
-cert_fingerprint = 7ee6859105799c53ae5e166005090601e61999cb
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = victor.gaudard@gmail.com
 remotepasseval = get_keychain_pass("victor.gaudard@gmail.com")
 realdelete = no
@@ -86,7 +86,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 [Repository vgaudardgmailpro-Remote]
 maxconnections = 1
 type = Gmail
-cert_fingerprint = 7ee6859105799c53ae5e166005090601e61999cb
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = victor.gaudard@gmail.com
 remotepasseval = get_keychain_pass("victor.gaudard@gmail.com")
 realdelete = no
@@ -115,4 +115,5 @@ remotehost = mailhost.insa-rennes.fr
 remoteuser = vgaudard
 remotepasseval = get_keychain_pass("victor.gaudard@insa-rennes.fr")
 realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
