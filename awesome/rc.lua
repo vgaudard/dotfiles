@@ -105,6 +105,13 @@ function setInput (input, value)
     f:close()
     awful.util.spawn("xinput set-prop " .. id .. " 'Device Enabled' " .. value)
 end
+
+function listClients()
+    local f = io.popen('wmctrl -l | sed -n -r \'s/^0x[a-f0-9]{8}\\s+([0-9]+)\\s+\\S+\\s+(.*)$/\\1\\t\\2/p\' | sort | sed \'y/012345678/123456789/\' ')
+    local clients = f:read("*all")
+    f:close()
+    return clients
+end
 -- }}}
 
 -- {{{ Wallpaper
@@ -382,6 +389,9 @@ globalkeys = awful.util.table.join(
 
     -- GVim
     awful.key({ modkey }, "v", function() awful.util.spawn("gvim") end),
+
+    -- List clients
+    awful.key({ modkey }, "g", function() naughty.notify({text=listClients(), title="List of open clients"}) end),
 
     -- Volume Control
     awful.key({}, "XF86AudioRaiseVolume",function () volume("up", tb_volume) end),
