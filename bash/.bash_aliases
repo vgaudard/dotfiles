@@ -25,7 +25,7 @@ function pinguntilsuccess
     done;
 }
 
-alias vpnstart="sudo openvpn --config /home/victor/.openvpnconfig/nyu_new_network.ovpn"
+alias vpnstart="sudo openvpn --config /home/ezan/.openvpnconfig/config.ovpn"
 
 alias h="history"
 alias le="less"
