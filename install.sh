@@ -17,6 +17,8 @@ SYMLINKS=(["bash/.bashrc"]=""
           ["mail/mailcap"]="$HOME/.mutt"
           ["mail/.urlview"]=""
           ["mail/.msmtprc"]=""
+          ["i3/config"]="$HOME/.config/i3"
+          ["i3/.i3status.conf"]="$HOME/.config/i3/"
           )
 
 FOLDERS=("$HOME/.vim/backup"
@@ -27,6 +29,7 @@ FOLDERS=("$HOME/.vim/backup"
          "$HOME/.mail"
          "$HOME/.offlineimap"
          "$HOME/.mail/vgaudardgmailperso"
+         "$HOME/.config/i3"
          )
 
 for d in "$FOLDERS"; do
