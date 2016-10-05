@@ -144,4 +144,6 @@ if command -v todo > /dev/null 2>&1; then
 fi
 
 
+export XCOMPOSEFILE=~/.XCompose
+setxkbmap -option compose:rctrl
 
