@@ -1,6 +1,6 @@
 function mkcd
 {
-    mkdir $1;
+    mkdir $1 -p;
     cd $1;
 }
 
@@ -32,7 +32,6 @@ alias le="less"
 
 # Use only on VirtualBox guest system
 #alias mountHostDropbox="sudo mount -t vboxsf -o uid=$UID,gid=$(id -g) Dropbox ~/Dropbox"
-
 
 alias teamspeak="/opt/TeamSpeak3-Client-linux_amd64/ts3client_runscript.sh"
 

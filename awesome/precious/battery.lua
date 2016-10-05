@@ -166,7 +166,7 @@ local function activebat(paths)
         lock = false
     end
 
-    if perct < 25 then
+    if perct < 15 then
         res = '<span color="red">' .. res .. '</span>'
         if (not lock and status == 'Discharging\n') then
             lock = true
@@ -232,8 +232,8 @@ end
 
 --batinfo = widget({ type = "textbox" , name = "batinfo" })
 batinfo = wibox.widget.textbox()
-batinfo:connect_signal('mouse::enter', function () dispinfo(paths) end)
-batinfo:connect_signal('mouse::leave', function () clearinfo(showbatinfos) end)
+--batinfo:connect_signal('mouse::enter', function () dispinfo(paths) end)
+--batinfo:connect_signal('mouse::leave', function () clearinfo(showbatinfos) end)
 
 --[[
 function checkBattery ()
