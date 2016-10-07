@@ -15,6 +15,9 @@ REPOS+=(
 MAKETARGETS+=(
         "make -C $HOME/.config/i3/i3lock-color"
         "sudo make -C $HOME/.config/i3/i3lock-color install"
+        "sudo cp $HOME/.config/i3/i3lock-fancy/lock /usr/local/bin/"
+        "sudo cp $HOME/.config/i3/i3lock-fancy/lock.png /usr/local/bin/"
+        "sudo cp $HOME/.config/i3/i3lock-fancy/lockdark.png /usr/local/bin/"
         )
 
 DEPENDENCIES+=(
