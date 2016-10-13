@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SYMLINKS["i3/config"]="$HOME/.config/i3"
-SYMLINKS["i3/.i3status.conf"]="$HOME/.config/i3/"
+SYMLINKS["i3/.i3status.conf"]=""
 
 FOLDERS+=(
         "$HOME/.config/i3"
