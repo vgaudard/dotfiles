@@ -4,6 +4,14 @@ FOLDERS+=(
         "$tmpInstallBackup"
         )
 
+baseFolder=""
+
+custom_home_filepath="./custom_home_path"
+if [ -f "$custom_home_filepath" ]; then
+    baseFolder=$(cat "$custom_home_filepath")
+else
+    baseFolder="$HOME"
+fi
 
 
 if [ ${#DEPENDENCIES[@]} -ne 0 ]; then
@@ -24,7 +32,7 @@ for repo in "${!REPOS[@]}"; do
 done
 
 for f in "${!SYMLINKS[@]}"; do
-    folder=${SYMLINKS["$f"]:-$HOME}
+    folder=${SYMLINKS["$f"]:-$baseFolder}
     basef=$(basename $f)
     if [ ! -f "$folder/$basef" ]; then
         ln -s "$(realpath $f)" "$folder/$basef"

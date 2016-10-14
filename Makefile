@@ -1,5 +1,8 @@
 CUSTOM_INSTALL_FILEPATH=./custom_install.sh
 
+# This variable has to be set in install_scripts/main.sh too
+CUSTOM_HOME_FILEPATH=./custom_home_path
+
 help:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
 
@@ -14,6 +17,10 @@ vim: _start _vim execute clean
 i3: _start _i3 execute clean
 
 mail: _start _mail execute clean
+
+sethome:
+	echo "What do you want to set as home folder"
+	cat > $(CUSTOM_HOME_FILEPATH)
 
 _start:
 	cat install_scripts/start.sh >> $(CUSTOM_INSTALL_FILEPATH)
@@ -39,6 +46,6 @@ execute:
 	$(CUSTOM_INSTALL_FILEPATH)
 
 clean:
-	rm $(CUSTOM_INSTALL_FILEPATH)
+	rm -f $(CUSTOM_INSTALL_FILEPATH) $(cUSTOM_HOME_FILEPATH)
 
 
