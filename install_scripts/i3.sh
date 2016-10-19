@@ -24,6 +24,7 @@ DEPENDENCIES+=(
         "awk"
         "bash"
         "imagemagick"
+        "j4-dmenu-desktop"
         "libcairo-dev"
         "libev-dev"
         "libpam-dev"
