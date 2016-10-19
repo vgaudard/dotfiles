@@ -22,6 +22,18 @@ focus_follows_mouse no
 for_window [class="Tor Browser"] floating enable
 workspace_auto_back_and_forth yes
 
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -119,9 +131,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec sh -c '[ $(echo "NO\nYES" | dmenu -sb "#ff6600" -i -p "Really exit i3 X session?") = "YES" ] && i3-msg exit'
 
-bindsym $mod+Shift+Escape exec sh -c 'result=$(echo "No\nYes\nReboot" | dmenu -sb "#ff6600" -i -p "Really exit i3 X session?") && [ "$result" = "Yes" ] && sudo poweroff ||  [ "$result" = "Reboot" ] && sudo reboot'
-
-# bindsym $mod+p exec sh -c '[ echo $(echo "" | dmenu -p "Command prompt") ] || notify-send "Erreur lors de léxécution: $?"'
+bindsym $mod+Shift+Escape exec sh -c 'result=$(echo "No\nYes\nReboot" | dmenu -sb "#ff6600" -i -p "Shutdown ?") && [ "$result" = "Yes" ] && sudo poweroff ||  [ "$result" = "Reboot" ] && sudo reboot'
 
 # lock screen
 bindsym $mod+b exec "lock -gpf Hack-Bold"
@@ -161,9 +171,9 @@ bar {
 
 # Enable multimedia keys
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% && killall -USR1 i3status #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2%  && killall -USR1 i3status #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle  && killall -USR1 i3status # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% && pactl set-sink-volume 1 +2% && killall -USR1 i3status #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% && pactl set-sink-volume 1 -2%  && killall -USR1 i3status #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pactl set-sink-mute 1 toggle && killall -USR1 i3status # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
