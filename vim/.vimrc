@@ -59,31 +59,17 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     " engine for Vim.
     "Plugin 'Valloric/YouCompleteMe'
 
-    " Indent Guides is a plugin for visually displaying indent levels in
-    " Vim.
-    Plugin 'nathanaelkane/vim-indent-guides'
-
     " endwise.vim is a simple plugin that helps to end certain
     " structures automatically
     Plugin 'tpope/vim-endwise'
 
     " I'm not going to lie to you; fugitive.vim may very well be the best
-    " Git wrapper of all time. Check out these features:
+    " Git wrapper of all time.
     Plugin 'tpope/vim-fugitive'
-
-    " vim-expand-region is a Vim plugin that allows you to visually select
-    " increasingly larger regions of text using the same key combination
-    Plugin 'terryma/vim-expand-region'
 
     " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
     Plugin 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_map = '<Leader>o'
-
-    " A small Vim plugin for previewing markdown files in a browser.
-    Plugin 'JamshedVesuna/vim-markdown-preview'
-
-    " A Filetype plugin for csv files
-    Plugin 'chrisbra/csv.vim'
 
     " Vim script for text filtering and alignment
     Plugin 'godlygeek/tabular'
@@ -92,7 +78,7 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     Plugin 'chrisbra/NrrwRgn'
 
     " Vim-CtrlSpace, a comprehensive solution for your Vim editor providing
-    Plugin 'vim-ctrlspace/vim-ctrlspace'
+    "Plugin 'vim-ctrlspace/vim-ctrlspace'
 
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
     Plugin 'airblade/vim-gitgutter'
@@ -104,11 +90,8 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     " Vim plugin for intensely orgasmic commenting
     Plugin 'scrooloose/nerdcommenter'
 
-    " Vim omnicompletion (intellisense) and more for c#
-    "Plugin 'OmniSharp/Omnisharp-vim'
-
     " dispatch.vim: asynchronous build and test dispatcher
-    Plugin 'tpope/vim-dispatch'
+    "Plugin 'tpope/vim-dispatch'
 
     " Vim plugin that provides additional text objects
     Plugin 'wellle/targets.vim'
@@ -238,7 +221,7 @@ nnoremap <Leader>K        <c-w>K
 nnoremap <Leader>L        <c-w>L
 
 " Taglist
-nnoremap <Leader>t  :TlistToggle<Return>
+nnoremap <Leader>bg  :TlistToggle<Return>
 
 " }}}
 
@@ -265,14 +248,25 @@ function! s:QuickfixToggle()
     endif
 endfunction
 " }}}
+
+" Detach buffer to new tab
+" {{{
+nnoremap <Leader>t :tabedit % \| tabprevious \| close \| tabnext <Return>
+" }}}
 " }}}
 
 "###############################
 "####### Mode management #######
 "###############################
 " {{{
-" Quit insert mode when `jk` pressed
+" Quit insert mode when `jk` or `kj` pressed
 inoremap jk <Esc>
+inoremap kj <Esc>
+augroup InsertTimeoutlen
+    autocmd!
+    autocmd InsertEnter * let old_timeoutlen = &timeoutlen | set timeoutlen=60
+    autocmd InsertLeave * let &timeoutlen = old_timeoutlen | unlet old_timeoutlen
+augroup end
 " }}}
 
 "###############################
@@ -481,13 +475,6 @@ vnoremap <Leader>P  "+P
 " Copy all buffer to system clipboard
 nnoremap <Leader>v  ggvG$"+y''
 
-" Expand on repeated v press
-" {{{
-vmap v      <Plug>(expand_region_expand)
-vmap <C-v>  <Plug>(expand_region_shrink)
-" Redraw vim
-nnoremap <Leader>rr  :redraw!<Return>
-" }}}
 " }}}
 
 "###############################
@@ -501,11 +488,6 @@ nnoremap <Leader>bn  :set number! relativenumber!<Return>
 " Toggle line wrap
 nnoremap <Leader>bw  :set wrap!<Return>
 
-" Highlight trailing whitespaces
-highlight TrailingWhitespace ctermbg=white guibg=white
-nnoremap <Leader>bs  :match TrailingWhitespace /\s\+$/<Return>
-nnoremap <Leader>bS  :match<Return>
-
 " Remove highlight
 nnoremap <Leader>bl :nohlsearch<Return>
 
@@ -514,6 +496,8 @@ nnoremap <Leader>bt :set cursorline! cursorcolumn!<Return>
 
 " Show defined folds
 nnoremap <silent> <Leader>bz     :let &l:foldcolumn=4-&l:foldcolumn<Return>
+
+nnoremap <Leader>bs :SyntasticToggleMode
 
 " GitGutter
 nnoremap <Leader>gg :GitGutterSignsToggle<Return>
@@ -681,3 +665,6 @@ augroup trainingcmd
     autocmd!
 augroup end
 " }}}
+" }}}
+
+
