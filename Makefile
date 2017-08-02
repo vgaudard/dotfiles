@@ -6,6 +6,8 @@ CUSTOM_HOME_FILEPATH=./custom_home_path
 help:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
 
+.PHONY: all general bash vim i3 mail
+
 all: _start _general _bash _vim _i3 _mail execute clean
 
 general: _start _general execute clean

@@ -1,28 +1,28 @@
 #!/bin/bash
 
-SYMLINKS["i3/config"]="$HOME/.config/i3"
+I3DIR="$HOME/.config/i3"
+SYMLINKS["i3/config"]="$I3DIR"
 SYMLINKS["i3/.i3status.conf"]=""
 
 FOLDERS+=(
-        "$HOME/.config/i3"
+        "$I3DIR"
         )
 
 REPOS+=(
-        ["https://github.com/chrjguill/i3lock-color"]="$HOME/.config/i3/i3lock-color"
-        ["https://github.com/meskarune/i3lock-fancy"]="$HOME/.config/i3/i3lock-fancy"
+        ["https://github.com/vgaudard/i3lock-color.git"]="$I3DIR/i3lock-color"
+        ["https://github.com/vgaudard/i3lock-fancy.git"]="$I3DIR/i3lock-fancy"
+        ["https://github.com/vgaudard/i3status.git"]="$I3DIR/i3status"
         )
 
 MAKETARGETS+=(
-        "make -C $HOME/.config/i3/i3lock-color"
-        "sudo make -C $HOME/.config/i3/i3lock-color install"
-        "sudo cp $HOME/.config/i3/i3lock-fancy/lock /usr/local/bin/"
-        "sudo cp $HOME/.config/i3/i3lock-fancy/lock.png /usr/local/bin/"
-        "sudo cp $HOME/.config/i3/i3lock-fancy/lockdark.png /usr/local/bin/"
+        "make -C $I3DIR/i3lock-color"
+        "sudo make -C $I3DIR/i3lock-color install"
+        "sudo make -C $I3DIR/i3lock-fancy ICONSFAMILY=shield"
+        "make -C $I3DIR/i3status"
+        "sudo make -C $I3DIR/i3status install"
         )
 
 DEPENDENCIES+=(
-        "awk"
-        "bash"
         "imagemagick"
         "j4-dmenu-desktop"
         "libcairo-dev"
@@ -30,6 +30,7 @@ DEPENDENCIES+=(
         "libpam-dev"
         "libx11-dev"
         "libx11-xcb-dev"
+        "libxcb-composite0-dev"
         "libxcb-dpms0-dev"
         "libxcb-image0-dev"
         "libxcb-util0-dev"
@@ -40,7 +41,7 @@ DEPENDENCIES+=(
         "libxkbcommon-x11-dev"
         "libxkbcommon0"
         "scrot"
-        "utils-linux"
+        "util-linux"
         "pkg-config"
         )
 
