@@ -147,6 +147,7 @@ syntax on
 set modeline
 set timeout
 set timeoutlen=300
+set backspace=2     " Backspace behaves in a sane way
 
 " Search options
 set ignorecase		" Do case insensitive matching
