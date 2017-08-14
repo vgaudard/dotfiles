@@ -129,7 +129,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec sh -c '[ $(echo "NO\nYES" | dmenu -sb "#ff6600" -i -p "Really exit i3 X session?") = "YES" ] && i3-msg exit'
+bindsym $mod+Shift+e exec sh -c '[ $(echo -e "NO\nYES" | dmenu -sb "#ff6600" -i -p "Really exit i3 X session?") = "YES" ] && i3-msg exit'
 
 bindsym $mod+Shift+Escape exec sh -c 'result=$(echo "No\nYes\nReboot" | dmenu -sb "#ff6600" -i -p "Shutdown ?") && [ "$result" = "Yes" ] && sudo poweroff ||  [ "$result" = "Reboot" ] && sudo reboot'
 
