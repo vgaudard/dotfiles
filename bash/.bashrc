@@ -75,6 +75,9 @@ if [ "$color_prompt" = yes ]; then
         else # if root
             PS1="$PS1\[\e[1;31m\]) #\[\e[0m\] " # Prompt symbol
         fi
+
+        local new_title=$(perl -p -e "s|^$HOME|~|;s|([^/])[^/]*/|$""1/|g" <<< $PWD)
+        echo -ne "\033]2;$new_title\007"
     }
     PROMPT_COMMAND='set_prompt'
 else
