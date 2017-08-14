@@ -52,7 +52,7 @@ if [ "$color_prompt" = yes ]; then
         PS1=""
         # If last command failed, print a red X.
         if [[ $lastCommand != 0 ]]; then
-            PS1+="\[\e[1;31m\](\[$FancyX\] $lastCommand)"
+            PS1+="\[\e[1;31m\]($lastCommand)"
         fi
         local d=$(date +"%H:%M:%S")
         #PS1="$PS1\[\e[0;33m\]{$d}" # Date and time
