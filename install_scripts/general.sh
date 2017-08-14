@@ -2,3 +2,4 @@
 
 
 SYMLINKS[".inputrc"]=""
+SYMLINKS[".Xresources"]=""
