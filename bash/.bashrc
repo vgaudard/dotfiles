@@ -78,8 +78,13 @@ if [ "$color_prompt" = yes ]; then
 
         PS1="$PS1$prompt_color) $promt_symbol\[\e[0m\] " # Prompt symbol
 
-        local new_title=$(perl -p -e "s|^$HOME|~|;s|([^/])[^/]*/|$""1/|g" <<< $PWD)
-        echo -ne "\033]2;$new_title\007"
+        local abridged_pwd=$(perl -p -e "s|^$HOME|~|;s|([^/])[^/]*/|$""1/|g" <<< $PWD)
+        local new_title="\033]2;\u"
+        if [ "$BASH_PROMPT_HIDE_HOST" != yes ]; then
+            new_title="$new_title@\h"
+        fi
+        new_title="$new_title: $abridged_pwd\007"
+        PS1="$PS1$new_title"
     }
     PROMPT_COMMAND='set_prompt'
 else
