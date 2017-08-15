@@ -44,10 +44,20 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+if [ -f ~/.bash_prompt_hide_host ]; then
+    BASH_PROMPT_HIDE_HOST=yes
+fi
 if [ "$color_prompt" = yes ]; then
     set_prompt () {
         local lastCommand=$? # Must come first!
         local FancyX='\342\234\227'
+        if [[ $EUID -ne 0 ]]; then  # if not root
+            prompt_color="\[\e[1;33m\]"
+            promt_symbol="$"
+        else # if root
+            prompt_color="\[\e[1;31m\]"
+            promt_symbol="#"
+        fi
 
         PS1=""
         # If last command failed, print a red X.
@@ -56,25 +66,17 @@ if [ "$color_prompt" = yes ]; then
         fi
         local d=$(date +"%H:%M:%S")
         #PS1="$PS1\[\e[0;33m\]{$d}" # Date and time
-        if [[ $EUID -ne 0 ]]; then  # if not root
-            #PS1="$PS1\[\e[1;33m\](\u@\h\[$txtrst\]:" # Username and hostname
-            PS1="$PS1\[\e[1;33m\](\u\[$txtrst\]:" # Username and hostname
-        else # if root
-            #PS1="$PS1\[\e[1;31m\](\u@\h\[$txtrst\]:" # Username and hostname
-            PS1="$PS1\[\e[1;31m\](\u\[$txtrst\]:" # Username and hostname
+        PS1="$PS1$prompt_color(\u" # Username
+        if [ "$BASH_PROMPT_HIDE_HOST" != yes ]; then
+            PS1="$PS1@\h" # Host name
         fi
-        PS1="$PS1\[\e[1;34m\][\w]"  # Working directory
+        PS1="$PS1\[$txtrst\]\[\e[1;34m\][\w]"  # Working directory
 
         if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then # show git branch if in git subtree
             PS1="$PS1\[\e[0;30m\]>$(git rev-parse --abbrev-ref HEAD)\[\e[00m\]"
         fi
 
-
-        if [[ $EUID -ne 0 ]]; then  # if not root
-            PS1="$PS1\[\e[1;33m\]) \$\[\e[0m\] " # Prompt symbol
-        else # if root
-            PS1="$PS1\[\e[1;31m\]) #\[\e[0m\] " # Prompt symbol
-        fi
+        PS1="$PS1$prompt_color) $promt_symbol\[\e[0m\] " # Prompt symbol
 
         local new_title=$(perl -p -e "s|^$HOME|~|;s|([^/])[^/]*/|$""1/|g" <<< $PWD)
         echo -ne "\033]2;$new_title\007"
