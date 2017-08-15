@@ -255,6 +255,7 @@ endfunction
 nnoremap <Leader>t :tabedit % \| tabprevious \| close \| tabnext <Return>
 " }}}
 " }}}
+" }}}
 
 "###############################
 "####### Mode management #######
@@ -517,6 +518,17 @@ augroup autocomment_options
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup end
 " }}}
+
+"###############################
+"#### Spelling #################
+"###############################
+" {{{
+augroup filetype_spelling
+    autocmd!
+    autocmd FileType gitcommit setlocal spell spelllang=en
+augroup END
+" }}}
+
 " }}}
 
 "################################################################################
