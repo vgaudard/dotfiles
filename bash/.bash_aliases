@@ -20,3 +20,5 @@ alias commandofwindow="ps -o command \"\$(xprop _NET_WM_PID | cut -d' ' -f3)\" |
 
 # Hide new path when cd'ing (because of $CDPATH)
 alias cd=">/dev/null cd"
+
+alias x="startx"
