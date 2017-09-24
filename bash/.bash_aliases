@@ -22,3 +22,13 @@ alias commandofwindow="ps -o command \"\$(xprop _NET_WM_PID | cut -d' ' -f3)\" |
 alias cd=">/dev/null cd"
 
 alias x="startx"
+
+# Watch video from /tmp
+# Useful if /tmp is mounted as tmpfs and video is on a slow drive
+function tmpvlc
+{
+    tmppath=$(mktemp)
+    cp $1 $tmppath
+    vlc $tmppath
+    rm -f $tmppath
+}
