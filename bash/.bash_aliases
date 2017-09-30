@@ -28,7 +28,7 @@ alias x="startx"
 function tmpvlc
 {
     tmppath=$(mktemp)
-    cp $1 $tmppath
-    vlc $tmppath
-    rm -f $tmppath
+    cp "$1" "$tmppath"
+    vlc "$tmppath"
+    rm -f "$tmppath"
 }
