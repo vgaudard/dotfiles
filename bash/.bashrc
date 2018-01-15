@@ -50,7 +50,6 @@ fi
 if [ "$color_prompt" = yes ]; then
     set_prompt () {
         local lastCommand=$? # Must come first!
-        local FancyX='\342\234\227'
         if [[ $EUID -ne 0 ]]; then  # if not root
             prompt_color="\[\e[1;33m\]"
             promt_symbol="$"
@@ -64,19 +63,17 @@ if [ "$color_prompt" = yes ]; then
         if [[ $lastCommand != 0 ]]; then
             PS1+="\[\e[1;31m\]($lastCommand)"
         fi
-        local d=$(date +"%H:%M:%S")
-        #PS1="$PS1\[\e[0;33m\]{$d}" # Date and time
-        PS1="$PS1$prompt_color(\u" # Username
+        PS1+="$prompt_color(\u" # Username
         if [ "$BASH_PROMPT_HIDE_HOST" != yes ]; then
-            PS1="$PS1@\h" # Host name
+            PS1+="@\h" # Host name
         fi
-        PS1="$PS1\[$txtrst\]\[\e[1;34m\][\w]"  # Working directory
+        PS1+="\[\e[1;34m\][\w]"  # Working directory
 
         if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then # show git branch if in git subtree
-            PS1="$PS1\[\e[0;30m\]>$(git rev-parse --abbrev-ref HEAD)\[\e[00m\]"
+            PS1+="\[\e[0;30m\]>$(git rev-parse --abbrev-ref HEAD)\[\e[00m\]"
         fi
 
-        PS1="$PS1$prompt_color) $promt_symbol\[\e[0m\] " # Prompt symbol
+        PS1+="$prompt_color) $promt_symbol\[\e[0m\] " # Prompt symbol
 
         local abridged_pwd=$(perl -p -e "s|^$HOME|~|;s|([^/])[^/]*/|$""1/|g" <<< $PWD)
         local new_title="\033]2;\u"
@@ -84,22 +81,13 @@ if [ "$color_prompt" = yes ]; then
             new_title="$new_title@\h"
         fi
         new_title="$new_title: $abridged_pwd\007"
-        PS1="$PS1$new_title"
+        PS1+="\[$new_title\]"
     }
     PROMPT_COMMAND='set_prompt'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

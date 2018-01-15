@@ -3,8 +3,8 @@ $include /etc/inputrc
 # vi (modal) editing mode
 set editing-mode vi
 set show-mode-in-prompt on
-set vi-cmd-mode-string \033[1;31mC\033[0m
-set vi-ins-mode-string \033[1;32mI\033[0m
+set vi-cmd-mode-string C
+set vi-ins-mode-string I
 set keyseq-timeout 20
 
 # Tab completion
