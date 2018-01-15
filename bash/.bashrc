@@ -48,6 +48,13 @@ if [ -f ~/.bash_prompt_hide_host ]; then
     BASH_PROMPT_HIDE_HOST=yes
 fi
 if [ "$color_prompt" = yes ]; then
+    commandStartDate=$(date +%s)
+    exec_info () {
+        if [ "$fromPrompt" == true ]; then
+            commandStartDate=$(date +%s)
+        fi
+        fromPrompt=false
+    }
     set_prompt () {
         local lastCommand=$? # Must come first!
         if [[ $EUID -ne 0 ]]; then  # if not root
@@ -59,6 +66,12 @@ if [ "$color_prompt" = yes ]; then
         fi
 
         PS1=""
+
+        local execTime=$(($(date +%s) - $commandStartDate))
+        if [[ "$execTime" > 0 ]]; then
+            PS1+=" > \e[1;33min $execTime\e[0m\n"
+        fi
+
         # If last command failed, print a red X.
         if [[ $lastCommand != 0 ]]; then
             PS1+="\[\e[1;31m\]($lastCommand)"
@@ -82,7 +95,9 @@ if [ "$color_prompt" = yes ]; then
         fi
         new_title="$new_title: $abridged_pwd\007"
         PS1+="\[$new_title\]"
+        fromPrompt=true
     }
+    trap 'exec_info' DEBUG
     PROMPT_COMMAND='set_prompt'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
