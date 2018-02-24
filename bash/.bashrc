@@ -68,7 +68,7 @@ if [ "$color_prompt" = yes ]; then
         PS1=""
 
         local execTime=$(($(date +%s) - $commandStartDate))
-        if [[ "$execTime" > 0 ]]; then
+        if [[ "$execTime" > 1 ]]; then
             PS1+=" > \e[1;33min $execTime\e[0m\n"
         fi
 
