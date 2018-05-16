@@ -92,6 +92,7 @@ if has("gui_running")
     set guioptions-=R
     set guioptions-=l
     set guioptions-=L
+    set guioptions-=e
 endif
 
 " Colorscheme
@@ -107,7 +108,7 @@ colorscheme badwolf
 set showcmd		    " Show (partial) command in status line.
 set autowrite		" Automatically save before commands like :next and :make
 set hidden		    " Hide buffers when they are abandoned
-set mouse=
+set mouse=a
 set textwidth=0
 syntax on
 set modeline
