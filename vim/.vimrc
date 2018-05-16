@@ -49,49 +49,12 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     let g:syntastic_python_python_exec = '/usr/bin/python3'
     " }}}
 
-    " The "Tag List" plugin is a source code browser plugin for Vim and
-    " provides an overview of the structure of source code files and allows
-    " you to efficiently browse through source code files for different
-    " programming languages.
-    Plugin 'taglist.vim'
-
-    " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion
-    " engine for Vim.
-    "Plugin 'Valloric/YouCompleteMe'
-
     " endwise.vim is a simple plugin that helps to end certain
     " structures automatically
     Plugin 'tpope/vim-endwise'
 
-    " I'm not going to lie to you; fugitive.vim may very well be the best
-    " Git wrapper of all time.
-    Plugin 'tpope/vim-fugitive'
-
-    " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-    Plugin 'ctrlpvim/ctrlp.vim'
-    let g:ctrlp_map = '<Leader>o'
-
     " Vim script for text filtering and alignment
     Plugin 'godlygeek/tabular'
-
-    " A Vim plugin for focussing on a selected region
-    Plugin 'chrisbra/NrrwRgn'
-
-    " Vim-CtrlSpace, a comprehensive solution for your Vim editor providing
-    "Plugin 'vim-ctrlspace/vim-ctrlspace'
-
-    " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
-    Plugin 'airblade/vim-gitgutter'
-    " {{{
-    let g:gitgutter_signs = 0
-    let g:gitgutter_map_keys = 0
-    " }}}
-
-    " Vim plugin for intensely orgasmic commenting
-    Plugin 'scrooloose/nerdcommenter'
-
-    " dispatch.vim: asynchronous build and test dispatcher
-    "Plugin 'tpope/vim-dispatch'
 
     " Vim plugin that provides additional text objects
     Plugin 'wellle/targets.vim'
@@ -105,6 +68,9 @@ if isdirectory($HOME . "/.vim/bundle/Vundle.vim/")
     " This is a simple vim plugin that add tab complete and type complete in
     " less then 50 lines of code.
     Plugin 'maxboisvert/vim-simple-complete'
+
+    " Markdown Vim Mode http://plasticboy.com/markdown-vim-mode/
+    Plugin 'plasticboy/vim-markdown'
 
     call vundle#end()
     filetype plugin indent on
