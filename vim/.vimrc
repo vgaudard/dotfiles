@@ -130,6 +130,7 @@ set smarttab
 set expandtab
 set autoindent
 set shiftround      " Round indent to multiple of 'shiftwidth'
+set nojoinspaces
 
 " Text-wrapping
 set wrap
@@ -493,6 +494,7 @@ augroup end
 augroup filetype_spelling
     autocmd!
     autocmd FileType gitcommit setlocal spell spelllang=en
+    autocmd FileType markdown setlocal spell spelllang=en,fr tw=80
 augroup END
 " }}}
 
