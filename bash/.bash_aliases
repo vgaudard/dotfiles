@@ -37,3 +37,9 @@ function viman
 {
     view -c 'set readonly nomodifiable filetype=man foldmethod=indent' <(man $@)
 }
+
+# Quick docker
+if which docker > /dev/null ; then
+    alias qdck="docker run --rm -it"
+    alias ds='docker search -f is-official=true --format "table {{.Name}} (★ {{.StarCount}}):\t{{.Description}}" --no-trunc'
+fi
