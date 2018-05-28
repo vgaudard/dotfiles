@@ -32,3 +32,8 @@ function tmpvlc
     vlc "$tmppath"
     rm -f "$tmppath"
 }
+
+function viman
+{
+    view -c 'set readonly nomodifiable filetype=man foldmethod=indent' <(man $@)
+}
