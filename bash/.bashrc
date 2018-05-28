@@ -157,7 +157,7 @@ if command -v todo > /dev/null 2>&1; then
 fi
 
 export PATH=$PATH:~/bin
-export CDPATH=.:..:~:/
+export CDPATH=$PATH:~/bin
 
 if command -v setxkbmap > /dev/null 2>&1; then
     setxkbmap -option compose:rctrl
