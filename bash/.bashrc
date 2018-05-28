@@ -163,5 +163,9 @@ if command -v setxkbmap > /dev/null 2>&1; then
     setxkbmap -option compose:rctrl
 fi
 
+if command -v pandoc > /dev/null 2>&1; then
+    eval "$(pandoc --bash-completion)"
+fi
+
 export XCOMPOSEFILE=~/.XCompose
 
